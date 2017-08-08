@@ -1,0 +1,9 @@
+body {
+	background-color: brown;
+}
+.devoured {
+	background-color: pink;
+}
+.not-devoured {
+	background-color: orange;
+}
