@@ -6,18 +6,18 @@ var orm =  function (tableName){
     this.tableName = tableName;
 // INSERT INTO burgers (burger_name, devoured)  VALUES ("Onion and Swiss", 0);
     
-    this.add = function(column1, column2, val1, val2) {
+    this.insertOne = function(column1, column2, val1, val2, cb) {
         var queryString = "INSERT INTO ?? (??, ??) VALUES (?, ?)";
-        console.log(queryString + ", " + "[" + this.tableName + ", " +  column1 + ", " + column2 + ", " + val1.toString() + ", " + val2 + "]");
-        connection.query(queryString, [this.tableName, column1, column2, val1.toString() , val2], function(err){
+        connection.query(queryString, [this.tableName, column1, column2, val1 , val2], function(err, result){
+          console.log('error');
           if (err) {
             throw err;
-          } else {
-            console.log('success')
-          }
-        })
+          } 
+          console.log('no error');
+          cb(result);
+          });
+        }
     };
-}
 
 // Object for all our SQL statement functions.
 // var orm = {

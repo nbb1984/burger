@@ -13,17 +13,22 @@ let burger = {
         return callback(data);
     });
   },
-
   add : function(name, callback) {
-    console.log('burger.js ran');
-    connection.query("INSERT INTO burgers (burger_name, devoured) VALUES (?, ?)", [name, 0], function(err, result) {
-      if (err) {
-        throw err;
-      }
+    newOrm.insertOne("burger_name", "devoured", name, 0, function(result) {
       console.log('posted');
       callback(result);
     });
   },
+  // add : function(name, callback) {
+  //   console.log('burger.js ran');
+  //   newOrm.insertOne("INSERT INTO burgers (burger_name, devoured) VALUES (?, ?)", [name, 0], function(err, result) {
+  //     if (err) {
+  //       throw err;
+  //     }
+  //     console.log('posted');
+  //     callback(result);
+  //   });
+  // },
 
   delete : function(id, callback){
     connection.query("DELETE FROM burgers WHERE id = ?", [id], function(err, result) {
